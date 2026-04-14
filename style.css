@@ -1,4 +1,4 @@
-/* Reset and base styles */
+﻿/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,11 +11,11 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #050505;
+    background-color: #000;
     color: #fff;
     line-height: 1.6;
     opacity: 0;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.45s ease-in;
 }
 
 body.loaded {
@@ -32,7 +32,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.9);
     position: fixed;
     width: 100%;
     top: 0;
@@ -48,8 +48,8 @@ header {
 nav a {
     color: #ccc;
     text-decoration: none;
-    margin-left: 20px;
-    transition: color 0.3s;
+    margin-left: 24px;
+    transition: color 0.25s ease;
 }
 
 nav a:hover {
@@ -61,51 +61,69 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 100vh;
-    padding: 100px 40px 40px;
+    min-height: calc(100vh - 90px);
+    padding: 40px 40px 60px;
     background-color: #000;
 }
 
 .hero-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 540px;
 }
 
 .role {
-    font-size: 18px;
-    color: #ccc;
-    margin-bottom: 10px;
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 }
 
 h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
+    font-size: 4rem;
+    line-height: 1.05;
+    margin-bottom: 24px;
     color: #fff;
 }
 
 .intro {
-    font-size: 20px;
+    font-size: 1rem;
     color: #ccc;
-    margin-bottom: 30px;
+    max-width: 700px;
+    margin-bottom: 32px;
 }
 
 .buttons {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
-.btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
+.btn,
+button.btn,
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 26px;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+button.btn:hover,
+a.btn:hover {
+    transform: translateY(-2px);
 }
 
 .primary {
     background-color: #FF3B3B;
     color: #fff;
+    border: none;
 }
 
 .primary:hover {
@@ -131,20 +149,23 @@ h1 {
 }
 
 .profile-placeholder {
-    width: 300px;
-    height: 300px;
-    background-color: #333;
+    width: 320px;
+    height: 320px;
+    background-color: #181818;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ccc;
+    color: #ddd;
     font-size: 18px;
+    border: 1px solid rgba(255, 59, 59, 0.18);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
 }
 
 /* Section styling */
 .section {
     padding: 80px 40px;
+    background-color: #050505;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -154,14 +175,14 @@ h1 {
 }
 
 .section h2 {
-    font-size: 32px;
+    font-size: 2.2rem;
     margin-bottom: 18px;
     color: #fff;
 }
 
 .section p {
     color: #bbb;
-    font-size: 18px;
+    font-size: 1rem;
     max-width: 720px;
 }
 
@@ -177,6 +198,12 @@ h1 {
     border: 1px solid rgba(255, 59, 59, 0.15);
     border-radius: 16px;
     padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 59, 59, 0.35);
 }
 
 .project-item h3 {
@@ -209,35 +236,55 @@ footer {
         padding: 18px 24px;
     }
 
+    nav a {
+        margin-left: 18px;
+    }
+
     #hero {
         flex-direction: column;
         text-align: center;
-        padding: 120px 24px 40px;
+        padding: 70px 24px 40px;
     }
 
     .hero-content {
         max-width: 100%;
     }
 
-    .buttons {
-        justify-content: center;
-    }
-
     .hero-image {
-        margin-top: 40px;
+        margin-top: 36px;
     }
 
     .profile-placeholder {
-        width: 220px;
-        height: 220px;
-    }
-
-    nav a {
-        margin-left: 14px;
+        width: 260px;
+        height: 260px;
     }
 }
 
 @media (max-width: 640px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 18px 20px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav a {
+        margin-left: 0;
+        margin-right: 18px;
+    }
+
+    #hero {
+        padding: 80px 20px 40px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
     .project-list {
         grid-template-columns: 1fr;
     }
