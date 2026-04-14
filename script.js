@@ -166,4 +166,4 @@ window.addEventListener('scroll', () => {
 // Console Easter Egg
 console.log('%cHey there! 👨‍💻', 'font-size: 20px; color: #FF3B3B; font-weight: bold;');
 console.log('%cInterested in working together? Reach out!', 'font-size: 14px; color: #ffffff;');
-console.log('%cEmail: prem@example.com | Phone: 9988776655', 'font-size: 12px; color: #cccccc;');
+console.log('%cEmail: premrogesh007@gmail.com | Phone: 6383425902', 'font-size: 12px; color: #cccccc;');
