@@ -11,9 +11,10 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #060606;
+    background-color: #050505;
     color: #fff;
     line-height: 1.6;
+    min-height: 100vh;
     opacity: 0;
     transition: opacity 0.45s ease-in;
 }
@@ -32,7 +33,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 22px 40px;
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(0, 0, 0, 0.92);
     position: fixed;
     width: 100%;
     top: 0;
@@ -41,13 +42,13 @@ header {
 
 .logo {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     color: #FF3B3B;
 }
 
 nav {
     display: flex;
-    gap: 26px;
+    gap: 28px;
     align-items: center;
 }
 
@@ -157,22 +158,21 @@ a.btn:hover {
     position: relative;
 }
 
-.hero-photo {
+.hero-photo-wrapper {
     width: 460px;
     height: 520px;
     border-radius: 36px;
-    background: #111 url('profile.jpg') center/cover no-repeat;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
-    position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+    background: #111;
 }
 
-.hero-photo::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.65));
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .hero-shadow {
@@ -183,7 +183,7 @@ a.btn:hover {
     height: 280px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,59,59,0.18) 0%, transparent 55%);
+    background: radial-gradient(circle, rgba(255, 59, 59, 0.18) 0%, transparent 55%);
     filter: blur(18px);
     z-index: -1;
 }
@@ -193,12 +193,6 @@ a.btn:hover {
     padding: 80px 40px;
     background-color: #050505;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.section.about-section,
-.section.projects-section,
-.section.contact-section {
-    color: #fff;
 }
 
 .section-grid {
@@ -212,6 +206,7 @@ a.btn:hover {
 .section-header h2 {
     font-size: 2.4rem;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .section-copy p,
@@ -273,6 +268,7 @@ a.btn:hover {
 .project-card h3 {
     font-size: 1.25rem;
     margin-bottom: 12px;
+    color: #fff;
 }
 
 .project-card p {
@@ -310,9 +306,9 @@ footer {
         margin-bottom: 24px;
     }
 
-    .hero-photo {
-        width: 320px;
-        height: 420px;
+    .hero-photo-wrapper {
+        width: 360px;
+        height: 440px;
     }
 
     .section-grid {
@@ -341,10 +337,10 @@ footer {
         font-size: 2.8rem;
     }
 
-    .hero-photo {
+    .hero-photo-wrapper {
         width: 100%;
         max-width: 320px;
-        height: 400px;
+        height: 420px;
     }
 
     .project-grid {
@@ -359,4 +355,3 @@ footer {
         padding: 20px;
     }
 }
-

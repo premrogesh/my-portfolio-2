@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">Prem Kumar</div>
-        <nav>
+        <nav aria-label="Primary navigation">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -22,7 +22,7 @@
             <div class="hero-copy">
                 <span class="hero-tag">Frontend Developer</span>
                 <h1>Hi, I'm Prem Kumar</h1>
-                <p>I design and build dark, polished web experiences with clean layout, clear messaging, and responsive performance.</p>
+                <p>I build modern, responsive websites with a polished dark aesthetic and clear content structure. My work is focused on usability, performance, and visual balance.</p>
                 <div class="hero-actions">
                     <a class="btn primary" href="#projects">View Projects</a>
                     <a class="btn secondary" href="#contact">Contact Me</a>
@@ -30,7 +30,9 @@
             </div>
 
             <div class="hero-visual">
-                <div class="hero-photo"></div>
+                <div class="hero-photo-wrapper">
+                    <img src="profile.jpg" alt="Prem Kumar portrait" class="hero-photo">
+                </div>
                 <div class="hero-shadow"></div>
             </div>
         </section>
@@ -39,7 +41,7 @@
             <div class="section-grid">
                 <div class="section-copy">
                     <h2>About Me</h2>
-                    <p>I am a frontend developer focused on minimal, high-contrast interfaces that feel modern and work well on every screen. I enjoy building small experiences that are easy to navigate and visually strong.</p>
+                    <p>I am a frontend developer who creates clean, high-impact interfaces. I focus on minimalist design, smooth interactions, and responsive layouts that work beautifully on desktop and mobile.</p>
                 </div>
                 <div class="section-stats">
                     <div class="stat-card">
@@ -57,16 +59,16 @@
         <section id="projects" class="section projects-section">
             <div class="section-header">
                 <h2>Projects</h2>
-                <p>Selected work that demonstrates clean UI, strong visual hierarchy, and smooth interaction.</p>
+                <p>Selected work that showcases modern layout, strong visual hierarchy, and clean details.</p>
             </div>
             <div class="project-grid">
                 <article class="project-card">
-                    <h3>Dark portfolio landing</h3>
-                    <p>Clean hero layout with strong contrast and polished call to action.</p>
+                    <h3>Portfolio Landing</h3>
+                    <p>A dark-themed landing page with clear sections, strong calls to action, and polished spacing.</p>
                 </article>
                 <article class="project-card">
-                    <h3>Responsive UI upgrade</h3>
-                    <p>Mobile-first design with modern spacing and readable typography.</p>
+                    <h3>Responsive UI Design</h3>
+                    <p>A mobile-first interface with concise structure, modern typography, and smooth interactions.</p>
                 </article>
             </div>
         </section>
@@ -74,7 +76,7 @@
         <section id="contact" class="section contact-section">
             <div class="section-copy">
                 <h2>Contact</h2>
-                <p>Ready to build a clean, modern frontend? Reach out via the details below.</p>
+                <p>Interested in working together? Reach out using the phone number or email below and let’s get started on your frontend project.</p>
                 <div class="contact-details">
                     <span>Phone: 9988776655</span>
                     <span>Email: prem@example.com</span>
@@ -84,7 +86,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Prem Kumar. Designed for dark web experiences.</p>
+        <p>© 2026 Prem Kumar. Modern frontend experiences.</p>
     </footer>
 
     <script src="script.js"></script>
