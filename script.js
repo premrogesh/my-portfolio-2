@@ -1,18 +1,19 @@
 // Simple fade-in effect on page load
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('loaded');
 });
 
-// Optional: Smooth scroll for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
+// Smooth scroll for internal navigation
+document.querySelectorAll('nav a, .btn').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     });
 });
