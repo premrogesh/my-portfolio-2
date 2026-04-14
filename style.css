@@ -1,4 +1,4 @@
-﻿/* Root Variables */
+/* Root Variables */
 :root {
     --primary-color: #FF3B3B;
     --dark-bg: #050505;
@@ -9,6 +9,7 @@
     --border-light: rgba(255, 255, 255, 0.08);
     --glass-bg: rgba(20, 20, 20, 0.6);
     --glass-border: rgba(255, 59, 59, 0.15);
+    --neon-glow: rgba(255, 59, 59, 0.8);
 }
 
 body.light-mode {
@@ -21,6 +22,7 @@ body.light-mode {
     --border-light: rgba(0, 0, 0, 0.08);
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 59, 59, 0.25);
+    --neon-glow: rgba(255, 59, 59, 0.5);
 }
 
 /* Reset and base styles */
@@ -52,7 +54,106 @@ main {
     padding-top: 90px;
 }
 
-/* Header */
+/* ============ PRELOADER ============ */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #050505 0%, #111 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.logo-3d {
+    font-size: 120px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    perspective: 1000px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-letter {
+    background: linear-gradient(135deg, #FF3B3B, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: rotate-3d 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 59, 59, 0.6));
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate-3d {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    25% {
+        transform: rotateX(180deg) rotateY(10deg) rotateZ(5deg);
+    }
+    50% {
+        transform: rotateX(360deg) rotateY(20deg) rotateZ(10deg);
+    }
+    75% {
+        transform: rotateX(540deg) rotateY(10deg) rotateZ(5deg);
+    }
+    100% {
+        transform: rotateX(720deg) rotateY(0deg) rotateZ(0deg);
+    }
+}
+
+.preloader-text {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.loading-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #FF3B3B;
+    animation: bounce-dot 1.4s infinite ease-in-out;
+}
+
+.loading-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce-dot {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ============ HEADER ============ */
 header {
     display: flex;
     justify-content: space-between;
@@ -66,6 +167,7 @@ header {
     z-index: 100;
     border-bottom: 1px solid var(--border-light);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .logo {
@@ -76,6 +178,12 @@ header {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: glow-text 2s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 @keyframes glow-text {
@@ -128,6 +236,7 @@ nav a:hover::after {
     flex-direction: column;
     cursor: pointer;
     gap: 6px;
+    z-index: 101;
 }
 
 .hamburger span {
@@ -164,8 +273,8 @@ nav a:hover::after {
     transform: rotate(20deg);
 }
 
-/* Hero Section */
-#hero {
+/* ============ HERO SECTION ============ */
+.hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -176,7 +285,7 @@ nav a:hover::after {
     overflow: hidden;
 }
 
-#hero::before {
+.hero::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -251,6 +360,7 @@ h1 {
     animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
 
+/* ============ BUTTONS ============ */
 .btn,
 a.btn {
     display: inline-flex;
@@ -294,6 +404,37 @@ a.btn {
     box-shadow: 0 12px 30px rgba(255, 59, 59, 0.5);
 }
 
+/* Neon Button - Primary */
+.neon-btn {
+    position: relative;
+}
+
+.neon-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary-color), #ff6b6b);
+    filter: blur(8px);
+    opacity: 0.6;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.neon-btn:hover::after {
+    opacity: 1;
+    filter: blur(15px);
+}
+
+.neon-btn:hover {
+    box-shadow: 
+        0 0 10px rgba(255, 59, 59, 0.8),
+        0 0 20px rgba(255, 59, 59, 0.6),
+        0 0 30px rgba(255, 59, 59, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    filter: brightness(1.2) saturate(1.3);
+}
+
 .secondary {
     background-color: transparent;
     color: var(--primary-color);
@@ -308,6 +449,35 @@ a.btn {
     transform: translateY(-3px);
 }
 
+/* Neon Button - Secondary */
+.neon-btn-secondary {
+    position: relative;
+}
+
+.neon-btn-secondary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary-color), #ff6b6b);
+    filter: blur(6px);
+    opacity: 0.4;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.neon-btn-secondary:hover::after {
+    opacity: 0.8;
+    filter: blur(12px);
+}
+
+.neon-btn-secondary:hover {
+    box-shadow: 
+        0 0 10px rgba(255, 59, 59, 0.6),
+        inset 0 0 20px rgba(255, 59, 59, 0.2);
+}
+
+/* ============ HERO VISUAL ============ */
 .hero-visual {
     flex: 1;
     min-width: 320px;
@@ -335,6 +505,8 @@ a.btn {
                 0 0 50px rgba(255, 59, 59, 0.1);
     position: relative;
     z-index: 2;
+    transition: all 0.3s ease;
+    perspective: 1000px;
 }
 
 .hero-photo {
@@ -383,7 +555,7 @@ a.btn {
     50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
-/* Section styling */
+/* ============ SECTIONS ============ */
 .section {
     padding: 80px 40px;
     background-color: var(--dark-bg);
@@ -439,6 +611,17 @@ a.btn {
     gap: 20px;
 }
 
+/* ============ 3D CARDS ============ */
+.card-3d {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-3d:hover {
+    transform: translateZ(20px) rotateX(5deg) rotateY(-5deg);
+}
+
 .stat-card {
     background: var(--dark-card);
     border: 1px solid var(--border-light);
@@ -477,6 +660,7 @@ a.btn {
     margin-bottom: 28px;
 }
 
+/* ============ PROJECTS ============ */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(220px, 1fr));
@@ -490,9 +674,10 @@ a.btn {
     border: 1px solid var(--border-light);
     padding: 26px;
     border-radius: 22px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .project-card.glass {
@@ -519,14 +704,93 @@ a.btn {
 }
 
 .project-card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-12px) scale(1.02) translateZ(25px);
     border-color: var(--primary-color);
     box-shadow: 0 20px 50px rgba(255, 59, 59, 0.2);
 }
 
-.project-icon {
-    font-size: 2.5rem;
+/* SVG Icon Styling */
+.project-icon-svg,
+.contact-icon-svg {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 59, 59, 0.2));
+}
+
+.project-icon-svg svg,
+.contact-icon-svg svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon-svg {
+    transform: scale(1.15) rotate(-5deg);
+    filter: drop-shadow(0 0 20px rgba(255, 59, 59, 0.6));
+}
+
+.contact-icon-svg {
     margin-bottom: 12px;
+}
+
+.info-card:hover .contact-icon-svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 59, 59, 0.5));
+}
+
+/* SVG Animations */
+.phone-wave {
+    animation: wave-pulse 2s ease-in-out infinite;
+    transform-origin: 50px 50px;
+}
+
+@keyframes wave-pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.email-pulse {
+    animation: pulse-email 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-email {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+.icon-design {
+    animation: rotate-icon 4s linear infinite;
+}
+
+.icon-mobile {
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+@keyframes rotate-icon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .project-card h3 {
@@ -547,6 +811,18 @@ a.btn {
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
 }
 
 .project-link:hover {
@@ -554,7 +830,11 @@ a.btn {
     text-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
 }
 
-/* Contact Section */
+.project-link:hover::after {
+    width: 100%;
+}
+
+/* ============ CONTACT SECTION ============ */
 .contact-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -572,13 +852,19 @@ a.btn {
     border: 1px solid var(--border-light);
     padding: 40px;
     border-radius: 24px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
 }
 
 .contact-form.glass {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
+}
+
+.contact-form:hover {
+    transform: translateZ(15px);
+    box-shadow: 0 20px 50px rgba(255, 59, 59, 0.15);
 }
 
 .form-group {
@@ -616,6 +902,11 @@ a.btn {
     border-color: var(--primary-color);
     box-shadow: 0 0 20px rgba(255, 59, 59, 0.2);
     background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.contact-form .btn {
+    width: 100%;
 }
 
 .form-status {
@@ -651,7 +942,8 @@ a.btn {
     padding: 20px;
     border-radius: 16px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
 }
 
 .info-card.glass {
@@ -661,40 +953,42 @@ a.btn {
 }
 
 .info-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-6px) translateZ(20px);
     box-shadow: 0 12px 30px rgba(255, 59, 59, 0.15);
 }
 
 .info-card h3 {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.info-card a {
+.contact-link {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     display: block;
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-.info-card a:hover {
+.contact-link:hover {
     text-shadow: 0 0 15px rgba(255, 59, 59, 0.5);
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-2px);
 }
 
 .social-links {
     display: flex;
     gap: 12px;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .social-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 2px solid var(--border-light);
     border-radius: 50%;
     display: flex;
@@ -703,20 +997,36 @@ a.btn {
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.7rem;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.social-icon svg {
+    width: 28px;
+    height: 28px;
     transition: all 0.3s ease;
 }
 
 .social-icon:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(255, 59, 59, 0.3);
-    transform: scale(1.15);
+    box-shadow: 
+        0 0 15px rgba(255, 59, 59, 0.4),
+        inset 0 0 15px rgba(255, 59, 59, 0.1);
+    transform: scale(1.15) rotateX(10deg) rotateZ(5deg) translateZ(20px);
+}
+
+.social-icon:hover svg {
+    filter: drop-shadow(0 0 8px rgba(255, 59, 59, 0.6));
+    transform: rotate(15deg) scale(1.1);
 }
 
 .social-icon span {
     display: none;
 }
 
+/* ============ FOOTER ============ */
 footer {
     padding: 24px 40px;
     text-align: center;
@@ -725,9 +1035,9 @@ footer {
     transition: all 0.3s ease;
 }
 
-/* Responsive */
+/* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {
-    #hero {
+    .hero {
         flex-direction: column-reverse;
         text-align: center;
         padding: 60px 28px 40px;
@@ -747,6 +1057,10 @@ footer {
     }
 
     .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .project-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -801,32 +1115,34 @@ footer {
     }
 
     h1 {
-        font-size: 2.8rem;
-    }
-
-    .hero-photo-wrapper {
-        width: 100%;
-        max-width: 320px;
-        height: 400px;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
+        font-size: 2.5rem;
     }
 
     .section {
         padding: 60px 20px;
     }
 
+    .section-copy h2,
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
     .contact-form {
         padding: 24px;
     }
 
-    .contact-wrapper {
-        gap: 24px;
+    .hero-photo-wrapper {
+        width: 280px;
+        height: 340px;
     }
 
-    footer {
-        padding: 20px;
+    .social-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .social-icon svg {
+        width: 22px;
+        height: 22px;
     }
 }
